@@ -24,7 +24,7 @@ CONF_EIGHT_BIT_COLOR = "eight_bit_color"
 
 gc9a01_ns = cg.esphome_ns.namespace("gc9a01")
 SPIGC9A01 = gc9a01_ns.class_(
-    "GC9A01", cg.PollingComponent, display.DisplayBuffer, spi.SPIDevice
+    "GC9A01", display.DisplayBuffer, spi.SPIDevice
 )
 
 GC9A01_SCHEMA = display.FULL_DISPLAY_SCHEMA.extend(
@@ -52,7 +52,6 @@ CONFIG_SCHEMA = cv.All(
 
 
 async def setup_gc9a01(var, config):
-    await cg.register_component(var, config)
     await display.register_display(var, config)
 
     if CONF_RESET_PIN in config:
